@@ -1,4 +1,5 @@
 # Evidencija aktivnosti
+
 ## dd.mm.2021.
 Pocetak | Kraj
 ------- | ----
@@ -7,6 +8,6 @@ hh:mm   | hh:mm
 Definirani zahtjevi aplikacije.
 Dovršena prva faza projekta.
 
-## 23.12.2021.
+## 18.04.2023.
 ### Kratki opis promjena
-Napravio sam navigaciju
+Napravljen frontend početnog ekrana.
