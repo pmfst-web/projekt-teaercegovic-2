@@ -16,24 +16,15 @@ import Boje from '../constants/Boje';
 
 import Proizvod from '../components/Proizvod';
 
-const KategorijaEkran = ({ route, navigation }) => {
-  const { vrstaKategorije } = route.params;
-  
-  const prikazProizvoda = (podaci) => {
-    return (
-      <Proizvod
-        onPress={() => navigation.navigate('Detalji', { id: podaci.item.id })}
-        natpis={podaci.item.student}
-      />
-    );
-  };
+const KosaraEkran = (props) => {
+
 
   return (
     <ScrollView vertical={true} style={stil.ekran}>
 
     
       <View style={StilTekst.zaglavlje}>
-        <Text>Kategorija: {vrstaKategorije}</Text>
+        <Text>Kosara</Text>
       </View>
 
 
@@ -47,4 +38,4 @@ const stil = StyleSheet.create({
   },
   
 });
-export default KategorijaEkran;
+export default KosaraEkran;

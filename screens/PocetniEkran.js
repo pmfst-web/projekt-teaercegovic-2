@@ -3,10 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   Image,
   ScrollView,
-  TextInput,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
@@ -14,16 +12,74 @@ import {
 import StilTekst from '../constants/StilTekst';
 import Boje from '../constants/Boje';
 
-import Kategorije from '../components/Kategorije';
+
 import Proizvod from '../components/Proizvod';
 
-const PocetniEkran = (props) => {
+const PocetniEkran = ({ route, navigation }) => {
   
+  const Item = ({ item }) => {
+    return (
+      <View style={stil.kategorija}>{item.icon}</View>
+    )
+  }
+
+  const itemData=[
+    {
+    icon: (
+      <TouchableOpacity
+      onPress={() =>
+            navigation.navigate('Kategorija', {
+              vrstaKategorije: 'bracelet',
+            })}>
+        <Image 
+        style={{ width: 80, height: 80 }} 
+        source={require('../assets/icons/bracelet.png')} 
+        />
+      </TouchableOpacity>
+    )},
+    {
+    icon: (
+        <TouchableOpacity
+      onPress={() =>
+            navigation.navigate('Kategorija', {
+              vrstaKategorije: 'necklace',
+            })}>
+        <Image 
+        style={{ width: 80, height: 80 }} 
+        source={require('../assets/icons/necklace.png')} 
+        />
+      </TouchableOpacity>
+    )},
+    {
+    icon: (
+        <TouchableOpacity
+      onPress={() =>
+            navigation.navigate('Kategorija', {
+              vrstaKategorije: 'ring',
+            })}>
+        <Image 
+        style={{ width: 80, height: 80 }} 
+        source={require('../assets/icons/ring.png')} 
+        />
+      </TouchableOpacity>
+    )},
+    {
+    icon: (
+        <TouchableOpacity
+      onPress={() =>
+            navigation.navigate('Kategorija', {
+              vrstaKategorije: 'earrings',
+            })}>
+        <Image 
+        style={{ width: 80, height: 80 }} 
+        source={require('../assets/icons/earrings.png')} 
+        />
+      </TouchableOpacity>
+    )}
+  ]
   return (
     <ScrollView vertical={true} style={stil.ekran}>
-      <View style={StilTekst.zaglavlje}>
-        <Text style={StilTekst.naslov}>BEADS</Text>
-      </View>
+      
 
       <View style={stil.slikaOkvir}>
         <Image
@@ -36,8 +92,13 @@ const PocetniEkran = (props) => {
         <Text style={StilTekst.tekst}>Category</Text>
       </View>
 
-      <View style={stil.kategorija}>
-        <Kategorije />
+      <View style={stil.kategorije_sve}>
+        <FlatList 
+        data={itemData}
+        horizontal={true}
+        renderItem={Item}
+        keyExtractor={(item) => item.alt}
+        />
       </View>
 
       <View>
@@ -45,16 +106,22 @@ const PocetniEkran = (props) => {
       </View>
 
       <View style={stil.proizvodi}>
-        <Proizvod
-          slika={require('../assets/images/Flower_Necklace.png')}
-          naziv="Flower necklace"
-          cijena="3$"
-        />
-        <Proizvod
-          slika={require('../assets/images/Ring_1.png')}
-          naziv="Beaded ring"
-          cijena="5$"
-        />
+        <TouchableOpacity
+        onPress={() =>
+            navigation.navigate('Detalji')}>
+          <Proizvod
+            slika={require('../assets/images/necklace/necklace1.jpg')}
+            naziv="Green-white necklace"
+            cijena="4$"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Proizvod
+            slika={require('../assets/images/ring/ring1.jpg')}
+            naziv="Beaded rings"
+            cijena="4$"
+          />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -74,7 +141,7 @@ const stil = StyleSheet.create({
     width: '100%',
     height: 150,
   },
-  kategorija: {
+  kategorije_sve: {
     marginHorizontal: 'auto',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -88,5 +155,18 @@ const stil = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginBottom: 10,
   },
+  kategorija: {
+    flex: 1,
+    minWidth: 100,
+    maxWidth: '100%',
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 15,
+    backgroundColor: Boje.pozadina,
+    opacity: 0.8,
+    borderWidth: 3,
+    borderColor: Boje.istaknuto
+  }
 });
 export default PocetniEkran;
