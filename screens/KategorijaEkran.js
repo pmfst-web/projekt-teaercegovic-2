@@ -1,29 +1,45 @@
-import * as React from 'react';
+import  React,{useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Button,
-  Image,
   ScrollView,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
 } from 'react-native';
 
 import StilTekst from '../constants/StilTekst';
 import Boje from '../constants/Boje';
-
 import Proizvod from '../components/Proizvod';
 
-const KategorijaEkran = ({ route, navigation }) => {
-  const { vrstaKategorije } = route.params;
+import {useSelector,useDispatch} from 'react-redux'
+import {filterNakiti} from '../store/reducers/nakitSlice'
+
+const KategorijaEkran = ({ route }) => {
+
+  const prikaz = route.params.vrstaKategorije;
+  console.log(prikaz)
+
+  const dispatch = useDispatch();
   
-  const prikazProizvoda = (podaci) => {
+  const sviNakiti=useSelector((state)=>state.nakit.filterNakiti)
+  console.log(sviNakiti)
+
+  const filterNakit=()=>{
+    dispatch(filterNakiti("bracelet"));
+  }
+
+useEffect(()=>{
+  filterNakit();
+},[])
+
+console.log(sviNakiti)
+  const prikazElelementa = (sviNakiti) => {
     return (
       <Proizvod
-        onPress={() => navigation.navigate('Detalji', { id: podaci.item.id })}
-        natpis={podaci.item.student}
+        onPress={() => navigation.navigate('Detalji', { id: sviNakiti.id })}
+        slika={sviNakiti.slika}
+        naziv={sviNakiti.naziv}
+        vrsta={sviNakiti.vrsta}
+        cijena={sviNakiti.cijena}
       />
     );
   };
@@ -33,7 +49,11 @@ const KategorijaEkran = ({ route, navigation }) => {
 
     
       <View style={StilTekst.zaglavlje}>
-        <Text>Kategorija: {vrstaKategorije}</Text>
+        <Text>Kategorija:</Text>
+      </View>
+
+      <View>
+
       </View>
 
 

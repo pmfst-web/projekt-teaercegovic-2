@@ -16,6 +16,9 @@ const Tab = createBottomTabNavigator();
 import StilTekst from './constants/StilTekst';
 import Boje from './constants/Boje';
 
+import {Provider} from 'react-redux'
+import store from './store/reducers/nakiti'
+
 
 const tabOptions = ({ route }) => ({
   headerShown: false,
@@ -67,7 +70,7 @@ const tabEkrani = () => {
 export default function App() {
 
   return (
-
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
 
@@ -77,9 +80,15 @@ export default function App() {
               headerStyle: {
                 backgroundColor: Boje.pozadina,},
               headerTitleStyle:  StilTekst.naslov
-            }}
+            }
+          }
         />
-      
+        
+
+
+
+
+       
         
 
 
@@ -108,10 +117,11 @@ export default function App() {
           }
         />
 
-        
+
+      
+
 
         
-
         <Stack.Screen
           name="Detalji"
           component={ProizvodEkran}
@@ -135,6 +145,9 @@ export default function App() {
             }
           }
         />
+        
+
+        
 
         <Stack.Screen
         name="Kosara"
@@ -145,6 +158,7 @@ export default function App() {
 
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 const styles = StyleSheet.create({

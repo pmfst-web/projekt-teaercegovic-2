@@ -7,6 +7,18 @@ hh:mm   | hh:mm
 Definirani zahtjevi aplikacije.
 Dovršena prva faza projekta.
 
-## 23.12.2021.
+## 18.04.2023.
 ### Kratki opis promjena
-Napravio sam navigaciju
+Izgled pocetnog ekrana
+
+## 20.04.2023.
+### Kratki opis promjena
+Dodani ostali ekrani i slike
+
+## 21.04.2023.
+### Kratki opis promjena
+Navigacija
+
+## 28.04.2021.
+### Kratki opis promjena
+Zapocet redux

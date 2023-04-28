@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useState} from 'react';
 import {
   View,
   Text,
@@ -11,72 +11,13 @@ import {
 
 import StilTekst from '../constants/StilTekst';
 import Boje from '../constants/Boje';
-
-
 import Proizvod from '../components/Proizvod';
+
+import SveKategorije from '../components/SveKategorije'
 
 const PocetniEkran = ({ route, navigation }) => {
   
-  const Item = ({ item }) => {
-    return (
-      <View style={stil.kategorija}>{item.icon}</View>
-    )
-  }
-
-  const itemData=[
-    {
-    icon: (
-      <TouchableOpacity
-      onPress={() =>
-            navigation.navigate('Kategorija', {
-              vrstaKategorije: 'bracelet',
-            })}>
-        <Image 
-        style={{ width: 80, height: 80 }} 
-        source={require('../assets/icons/bracelet.png')} 
-        />
-      </TouchableOpacity>
-    )},
-    {
-    icon: (
-        <TouchableOpacity
-      onPress={() =>
-            navigation.navigate('Kategorija', {
-              vrstaKategorije: 'necklace',
-            })}>
-        <Image 
-        style={{ width: 80, height: 80 }} 
-        source={require('../assets/icons/necklace.png')} 
-        />
-      </TouchableOpacity>
-    )},
-    {
-    icon: (
-        <TouchableOpacity
-      onPress={() =>
-            navigation.navigate('Kategorija', {
-              vrstaKategorije: 'ring',
-            })}>
-        <Image 
-        style={{ width: 80, height: 80 }} 
-        source={require('../assets/icons/ring.png')} 
-        />
-      </TouchableOpacity>
-    )},
-    {
-    icon: (
-        <TouchableOpacity
-      onPress={() =>
-            navigation.navigate('Kategorija', {
-              vrstaKategorije: 'earrings',
-            })}>
-        <Image 
-        style={{ width: 80, height: 80 }} 
-        source={require('../assets/icons/earrings.png')} 
-        />
-      </TouchableOpacity>
-    )}
-  ]
+  
   return (
     <ScrollView vertical={true} style={stil.ekran}>
       
@@ -92,14 +33,12 @@ const PocetniEkran = ({ route, navigation }) => {
         <Text style={StilTekst.tekst}>Category</Text>
       </View>
 
-      <View style={stil.kategorije_sve}>
-        <FlatList 
-        data={itemData}
-        horizontal={true}
-        renderItem={Item}
-        keyExtractor={(item) => item.alt}
-        />
-      </View>
+      
+
+      <ScrollView style={stil.kategorije_sve}>
+        <SveKategorije/>
+      </ScrollView>
+
 
       <View>
         <Text style={StilTekst.tekst}>Trending now!</Text>
@@ -154,19 +93,6 @@ const stil = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginBottom: 10,
-  },
-  kategorija: {
-    flex: 1,
-    minWidth: 100,
-    maxWidth: '100%',
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-    backgroundColor: Boje.pozadina,
-    opacity: 0.8,
-    borderWidth: 3,
-    borderColor: Boje.istaknuto
   }
 });
 export default PocetniEkran;

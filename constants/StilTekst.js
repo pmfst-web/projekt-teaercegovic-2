@@ -36,4 +36,12 @@ export default StyleSheet.create({
     fontFamily: 'sans-serif',
     fontSize: 15
   },
+  imecijena:
+  {
+    textAlign: 'center',
+    color: "black",
+    fontFamily: 'sans-serif',
+    fontSize: 20,
+    padding: 8
+  }
 });
