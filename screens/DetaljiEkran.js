@@ -1,33 +1,40 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Image, Pressable } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 
 import Boje from '../constants/Boje';
 import StilTekst from '../constants/StilTekst';
-
 import Tipka from '../components/Tipka';
 
-const ProizvodEkran = ({ route, navigation }) => {
-  const [favorit, postaviFavorit] = useState(false);
-  const idNakita = Number(route.params.id);
+import {useSelector,useDispatch} from 'react-redux'
+import {favoritNakiti} from '../store/reducers/nakitSlice'
+
+const DetaljiEkran = ({ route, navigation }) => {
+  const idNakita = route.params?.id
+  console.log(idNakita)
   const sviNakiti = useSelector((state) => state.nakit.nakit);
-  const nakit = sviNakiti.find((n) => n.id === idNakita);
+  const nakit = sviNakiti.find((n) => n.id == idNakita);
+  console.log(nakit.id)
 
   const favNakiti = useSelector((state) => state.nakit.favoritNakiti);
+  console.log(favNakiti)
+
+  const [favorit, postaviFavorit] = useState(false);
 
   useEffect(() => {
     postaviFavorit(favNakiti.some((n) => n.id === nakit.id));
   }, [favNakiti, nakit]);
 
+  console.log(postaviFavorit)
+  const dispatch = useDispatch();
+
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: "Product details",
       headerRight: () => {
         return (
-          <TouchableOpacity onPress={()=>dispatch(promjenaFavorita(idNakita))}>
+          <TouchableOpacity onPress={()=>dispatch(favoritNakiti(idNakita))}>
             <View>
-              <MaterialIcons name={favorit ? "star" : "star-border"} size={26} color='black' />
+              <MaterialIcons name={favorit ? "favorite" : "favorite-border"} size={26} color='black' />
             </View>
           </TouchableOpacity>
         );
@@ -35,45 +42,33 @@ const ProizvodEkran = ({ route, navigation }) => {
     });
   }, [navigation, nakit, dispatch, idNakita, favorit]);
 
-  const dispatch = useDispatch();
-  const akcijaFavorit = () => {
-    dispatch(promjenaFavorita(idNakita));
-  };
-
   return (
     <View style={stil.ekran}>
 
       <View style={stil.kartica}>
 
         <View style={stil.slikaOkvir}>
-          <Image source={require(nakit.slika)} style={stil.slika}/>
+          <Image source={nakit.slika} style={stil.slika}/>
         </View>
 
         <View>
           <Text style={StilTekst.detalji}>{nakit.vrsta}</Text>
         </View>
-
         <View>
           <Text style={StilTekst.imecijena}>{nakit.naziv}</Text>
         </View>
-
         <View>
-          <Text style={StilTekst.imecijena}>{nakit.cijena}</Text>
+          <Text style={StilTekst.imecijena}>{nakit.cijena}€</Text>
         </View>
-
-      
 
         <View style={stil.tipke}>
           <View>
             <Tipka title="Add to cart"/>
           </View>
 
-          <View> 
-            <Pressable style={stil.srcebotun} onPress={akcijaFavorit}>
-              <MaterialIcons name="favorite" size={26} color='white'/>
-            </Pressable>
-          </View>
+          
         </View>
+
       </View>
 
     </View>
@@ -123,4 +118,4 @@ const stil = StyleSheet.create({
   }
 });
 
-export default ProizvodEkran;
+export default DetaljiEkran;

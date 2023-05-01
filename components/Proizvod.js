@@ -1,42 +1,55 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import Boje from '../constants/Boje'
 
-const Proizvod = ({slika, naziv, cijena}) => {
+const Proizvod = (props) => {
+  const navigation = useNavigation();
+  console.log(props.podaci, 'props podaci');
+  const onDetails = (id) => {
+    navigation.navigate('Jewerly details', { id });
+  };
 
   return(
-    <View style={stil.okvir}>
-      <Image source={slika} style={stil.slika}/>
-     
-      <Text  style={stil.tekst}>{naziv}</Text>
-    
-      <Text style={stil.tekst}>{cijena}</Text>
-    </View>
+    <TouchableOpacity 
+         onPress={() => onDetails(props.id)}>
+        <View style={stil.okvir}>
+
+          <View>
+            <Image source={props.slika} style={{height:110, width:110, resizeMode:'center'}}/>
+          </View>
+          <View>
+            <Text style={stil.tekst}>{props.vrsta}</Text>
+          </View>
+          <View>
+            <Text style={stil.tekst}>{props.cijena}€</Text>
+          </View>
+          <View>
+            <Text style={stil.tekst}>{props.id}</Text>
+          </View>
+          
+        </View>
+      </TouchableOpacity>
 
   )
 }
 
 const stil = StyleSheet.create({
-  slika: {
-    height: 120,
-    width: 120,
-    resizeMode:'center'
-  },
   okvir: {
+    backgroundColor: Boje.istaknuto,
+    width: 130,
+    height: 170,
+    margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Boje.pozadina,
-    borderColor: Boje.istaknuto,
-    borderWidth:3,
-
   },
   tekst:{
     fontFamily: 'sans-serif',
     justifyContent:'center',
     fontSize: 14,
-    paddingBottom: 2,
-    flexWrap: 'wrap'
+    paddingTop: 2,
+    flexWrap: 'wrap',
   }
-});
+})
 export default Proizvod;

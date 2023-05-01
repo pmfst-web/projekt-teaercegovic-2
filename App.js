@@ -6,9 +6,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import PocetniEkran from './screens/PocetniEkran';
-import KategorijaEkran from './screens/KategorijaEkran';
+import ProizvodiEkran from './screens/ProizvodiEkran';
 import KosaraEkran from './screens/KosaraEkran';
-import ProizvodEkran from './screens/ProizvodEkran';
+import DetaljiEkran from './screens/DetaljiEkran';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,9 +24,7 @@ const tabOptions = ({ route }) => ({
   headerShown: false,
   tabBarIcon: ({ focused, color, size }) => {
     let imeIkone;
-    if (route.name === 'Category') {
-      imeIkone = 'category';
-    } else if (route.name === 'All') {
+    if (route.name === 'All') {
       imeIkone =  'view-list';
     } else if (route.name === 'Fav') {
       imeIkone = focused ? 'favorite' : 'favorite-border';
@@ -44,20 +42,14 @@ const tabEkrani = () => {
   return (
     <Tab.Navigator screenOptions={tabOptions}>
     <Tab.Screen
-        name="Category"
-        component={KategorijaEkran}
-        initialParams={{ prikaz: 'cat' }}
-        options={{ tabBarLabel: 'Category' }}
-      />
-    <Tab.Screen
         name="All"
-        component={KategorijaEkran}
+        component={ProizvodiEkran}
         initialParams={{ prikaz: 'all' }}
         options={{ tabBarLabel: 'All' }}
       />
       <Tab.Screen
         name="Fav"
-        component={KategorijaEkran}
+        component={ProizvodiEkran}
         initialParams={{ prikaz: 'fav' }}
         options={{ tabBarLabel: 'Favorites' }}
       />
@@ -74,34 +66,18 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
 
-        <Stack.Screen name="Naslovna" component={PocetniEkran} 
-        options={{
-              title: 'BEADS',
-              headerStyle: {
-                backgroundColor: Boje.pozadina,},
-              headerTitleStyle:  StilTekst.naslov
-            }
-          }
-        />
-        
-
-
-
-
-       
-        
-
+        <Stack.Screen options={{headerShown: false}} name="Naslovna" component={PocetniEkran}/>
 
 
         <Stack.Screen
-          name="Kategorija"
+          name="Beaded jewelry"
           component={tabEkrani}
           options={({ route, navigation }) => {
               return {
                 headerRight: () => {
                   return (
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('Kosara')}>
+                      onPress={() => navigation.navigate('Shopping Cart')}>
                       <View>
                         <MaterialIcons
                           name="shopping-cart"
@@ -118,49 +94,23 @@ export default function App() {
         />
 
 
-      
-
+        <Stack.Screen
+          name="Jewerly details"
+          component={DetaljiEkran}
+        />
 
         
         <Stack.Screen
-          name="Detalji"
-          component={ProizvodEkran}
-          options={({ route, navigation }) => {
+        name="Shopping Cart"
+        component={KosaraEkran}
+        options={({ route, navigation }) => {
               return {
-                headerRight: () => {
-                  return (
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('Kosara')}>
-                      <View>
-                        <MaterialIcons
-                          name="shopping-cart"
-                          size={26}
-                          color='black'
-                        />
-                      </View>
-                    </TouchableOpacity>
-                  );
-                },
-              };
-            }
-          }
+                headerRight: () => {}}}}
         />
-        
 
-        
-
-        <Stack.Screen
-        name="Kosara"
-        component={KosaraEkran}/>
-
-
-        
-
+    
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
   );
 }
-const styles = StyleSheet.create({
-  
-});

@@ -5,40 +5,49 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  TouchableOpacity,
-  FlatList,
+  Dimensions,
+  ImageBackground,
 } from 'react-native';
 
 import StilTekst from '../constants/StilTekst';
 import Boje from '../constants/Boje';
 import Proizvod from '../components/Proizvod';
+import Tipka from '../components/Tipka'
 
 import SveKategorije from '../components/SveKategorije'
+
+const screenHeight = Dimensions.get('window').height;
+const screenWidth = Dimensions.get('window').width;
 
 const PocetniEkran = ({ route, navigation }) => {
   
   
   return (
-    <ScrollView vertical={true} style={stil.ekran}>
+    <View  style={stil.ekran}>
       
+      <ImageBackground source={require('../assets/neacklaces.png')} style={stil.pozadinaSlika}>
+      <View style={stil.glavniTekst}>
+        <Text style={StilTekst.naslov}>BEADS</Text>
+      </View>
 
-      <View style={stil.slikaOkvir}>
-        <Image
-          source={require('../assets/images/neacklaces.png')}
-          style={stil.slika1}
+      <View style={stil.tipka}>
+        <Tipka
+          title="Start shopping"
+          onPress={() => navigation.navigate('Beaded jewelry')}
         />
       </View>
+      </ImageBackground>
+
+
+      {/*OVO ISPOD OBRISI, NE TRIBA, JEDINO MAYBE KOJA SLIKA JOS... idk
 
       <View>
         <Text style={StilTekst.tekst}>Category</Text>
       </View>
 
-      
-
       <ScrollView style={stil.kategorije_sve}>
         <SveKategorije/>
       </ScrollView>
-
 
       <View>
         <Text style={StilTekst.tekst}>Trending now!</Text>
@@ -47,7 +56,7 @@ const PocetniEkran = ({ route, navigation }) => {
       <View style={stil.proizvodi}>
         <TouchableOpacity
         onPress={() =>
-            navigation.navigate('Detalji')}>
+            navigation.navigate('Jewerly details')}>
           <Proizvod
             slika={require('../assets/images/necklace/necklace1.jpg')}
             naziv="Green-white necklace"
@@ -61,24 +70,25 @@ const PocetniEkran = ({ route, navigation }) => {
             cijena="4$"
           />
         </TouchableOpacity>
-      </View>
-    </ScrollView>
+      </View>*/ }
+
+    </View>
   );
 };
 
 const stil = StyleSheet.create({
   ekran: {
     backgroundColor: Boje.pozadina,
+    flex:1
   },
   slika1: {
     width: '100%',
     height: '100%',
-    flex: 1,
     resizeMode: 'strecth',
   },
   slikaOkvir: {
     width: '100%',
-    height: 150,
+    height: '100%',
   },
   kategorije_sve: {
     marginHorizontal: 'auto',
@@ -93,6 +103,19 @@ const stil = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginBottom: 10,
+  },
+  tipka:{
+    alignItems: 'center',
+    paddingBottom: 150
+  },
+  pozadinaSlika: {
+    height: screenHeight,
+    width: screenWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  glavniTekst:{
+    paddingBottom:150
   }
 });
 export default PocetniEkran;

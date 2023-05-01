@@ -9,7 +9,7 @@ export default StyleSheet.create({
     width: "100%",
     height: 60,
     paddingTop: 20,
-    backgroundColor: Boje.pozadina,
+    //backgroundColor: Boje.pozadina,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -17,7 +17,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: "black",
     fontSize: 30,
-    fontFamily:'sans-serif'
+    fontFamily:'sans-serif',
+    //fontWeight: 'bold'
   },
   tekst:{
     color: "black",
@@ -29,7 +30,7 @@ export default StyleSheet.create({
     color: Boje.istaknuto,
     fontFamily: 'sans-serif',
     fontSize: 20,
-    fontWeight: 'bold'
+    //fontWeight: 'bold'
   },
   detalji: {
     color: "black",
