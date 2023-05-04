@@ -1,7 +1,6 @@
 import  React,{useEffect} from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   ScrollView,
   FlatList
@@ -14,7 +13,7 @@ import Proizvod from '../components/Proizvod';
 import {useSelector,useDispatch} from 'react-redux'
 import {filterNakiti, favoritNakiti} from '../store/reducers/nakitSlice'
 
-const ProizvodiEkran = ({ route }) => {
+const ProizvodiEkran = ({ route,navigation }) => {
   const prikaz = route.params.prikaz
   console.log(prikaz)
   
@@ -45,13 +44,19 @@ useEffect(()=>{
 },[])
 console.log(sviNakiti)*/
 
+  const onDetails = (pod) => {
+    console.log(pod,'bla bal')
+    navigation.navigate('Jewerly details', { id: pod });
+  };
+
   const prikazElelementa = (podaci) => {
+    console.log(podaci.item.id,'hehe')
     return (
       <Proizvod
-        onPress={() => navigation.navigate('Jewerly details', { id: podaci.item.id })}
         slika={podaci.item.slika}
         vrsta={podaci.item.vrsta}
         cijena={podaci.item.cijena}
+        handleDetails={onDetails}
         id={podaci.item.id}
       />
     );

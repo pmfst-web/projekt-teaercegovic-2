@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 
 import Boje from '../constants/Boje';
@@ -7,22 +7,23 @@ import StilTekst from '../constants/StilTekst';
 import Tipka from '../components/Tipka';
 
 import {useSelector,useDispatch} from 'react-redux'
-import {favoritNakiti} from '../store/reducers/nakitSlice'
+import {favoritNakit} from '../store/reducers/nakitSlice'
 
 const DetaljiEkran = ({ route, navigation }) => {
-  const idNakita = route.params?.id
+  console.log('udetal')
+  const idNakita = route.params.id
   console.log(idNakita)
   const sviNakiti = useSelector((state) => state.nakit.nakit);
   const nakit = sviNakiti.find((n) => n.id == idNakita);
-  console.log(nakit.id)
+  console.log(nakit,'eee')
 
   const favNakiti = useSelector((state) => state.nakit.favoritNakiti);
-  console.log(favNakiti)
+  console.log(favNakiti,'kjdbv')
 
   const [favorit, postaviFavorit] = useState(false);
 
   useEffect(() => {
-    postaviFavorit(favNakiti.some((n) => n.id === nakit.id));
+    postaviFavorit(favNakiti.some((n) => n?.id == nakit.id));
   }, [favNakiti, nakit]);
 
   console.log(postaviFavorit)
@@ -32,7 +33,7 @@ const DetaljiEkran = ({ route, navigation }) => {
     navigation.setOptions({
       headerRight: () => {
         return (
-          <TouchableOpacity onPress={()=>dispatch(favoritNakiti(idNakita))}>
+          <TouchableOpacity onPress={()=>dispatch(favoritNakit(nakit.id))}>
             <View>
               <MaterialIcons name={favorit ? "favorite" : "favorite-border"} size={26} color='black' />
             </View>

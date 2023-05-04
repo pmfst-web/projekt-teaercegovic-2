@@ -5,15 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import Boje from '../constants/Boje'
 
 const Proizvod = (props) => {
-  const navigation = useNavigation();
-  console.log(props.podaci, 'props podaci');
-  const onDetails = (id) => {
-    navigation.navigate('Jewerly details', { id });
-  };
+  console.log(props.handleDetails, 'props podaci');
 
   return(
     <TouchableOpacity 
-         onPress={() => onDetails(props.id)}>
+         onPress={() => props.handleDetails(props.id)}>
         <View style={stil.okvir}>
 
           <View>
@@ -24,9 +20,6 @@ const Proizvod = (props) => {
           </View>
           <View>
             <Text style={stil.tekst}>{props.cijena}€</Text>
-          </View>
-          <View>
-            <Text style={stil.tekst}>{props.id}</Text>
           </View>
           
         </View>

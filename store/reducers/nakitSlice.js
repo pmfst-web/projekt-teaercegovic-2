@@ -28,23 +28,29 @@ const nakitSlice = createSlice({
       return{...state,filterNakiti}
     },
 
-    favoritNakiti:(state,action)=>{
+    favoritNakit:(state,action)=>{
+      console.log(action.payload,'jaa')
+      console.log('h,',state.favoritNakiti)
       const odabran = state.favoritNakiti.findIndex(
-        (n) => n.id === action.idNakita
+        (n) => {
+          console.log(n,action.payload)
+          return n?.id == action.payload;
+        }
       )
+      console.log(odabran)
       if(odabran>=0){
         const noviFav =[...state.favoritNakiti]
         noviFav.splice(odabran,1)
         return {...state,favoritNakiti:noviFav}
       }else{
-        const n=state.nakit.find((n)=>n.id===action.idNakita)
+        const n=state.nakit.find((n)=>n.id==action.payload)
         return {...state,favoritNakiti:state.favoritNakiti.concat(n)}
       }
     }
   }
 })
 
-export const {filterNakiti,favoritNakiti} = nakitSlice.actions;
+export const {filterNakiti,favoritNakit} = nakitSlice.actions;
 
 export default nakitSlice.reducer;
 

@@ -43,7 +43,7 @@ export const NAKITI = [
   ),
   new Nakit(
     8,require('../assets/images/necklace/necklace1.jpg'),
-    'Necklace with pearls and green cristal beads',
+    'Necklace with pearls and green crystal beads',
     'Necklace',8
   ),
   new Nakit(

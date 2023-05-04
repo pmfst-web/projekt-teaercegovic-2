@@ -19,6 +19,11 @@ Dodani ostali ekrani i slike
 ### Kratki opis promjena
 Navigacija
 
-## 28.04.2021.
+## 28.04.2023.
 ### Kratki opis promjena
 Zapocet redux
+
+## 01.05.2023..
+### Kratki opis promjena
+Promjena navigacije, prikazivanje svih i detalji pojedinih
+
