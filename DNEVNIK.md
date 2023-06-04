@@ -27,3 +27,10 @@ Zapocet redux
 ### Kratki opis promjena
 Promjena navigacije, prikazivanje svih i detalji pojedinih
 
+## 04.05.2023.
+### Kratki opis promjena
+Promjena favorita
+
+## 04.06.2023.
+### Kratki opis promjena
+Dodavanje i uklanjanje u košaricu

@@ -7,7 +7,7 @@ import StilTekst from '../constants/StilTekst';
 import Tipka from '../components/Tipka';
 
 import {useSelector,useDispatch} from 'react-redux'
-import {favoritNakit} from '../store/reducers/nakitSlice'
+import {favoritNakit,dodajNakit,ukloniNakit} from '../store/reducers/nakitSlice'
 
 const DetaljiEkran = ({ route, navigation }) => {
   console.log('udetal')
@@ -43,6 +43,18 @@ const DetaljiEkran = ({ route, navigation }) => {
     });
   }, [navigation, nakit, dispatch, idNakita, favorit]);
 
+  const kosara = useSelector((state)=>state.nakit.kosarica)
+  console.log(kosara)
+
+  const dodavanje =(nakit)=>{
+    dispatch(dodajNakit(nakit))
+  }
+
+  const uklanjanje=(nakit)=>{
+    dispatch(ukloniNakit(nakit))
+  }
+
+
   return (
     <View style={stil.ekran}>
 
@@ -64,8 +76,17 @@ const DetaljiEkran = ({ route, navigation }) => {
 
         <View style={stil.tipke}>
           <View>
-            <Tipka title="Add to cart"/>
+          {kosara.some((value)=>value.id==nakit.id)?(
+            <Tipka title="Remove from cart" onPress={()=>uklanjanje(nakit)}/>
+          
+          ):(
+            <Tipka title="Add to cart" onPress={()=>dodavanje(nakit)}/>
+          
+          )}
           </View>
+            
+
+        
 
           
         </View>

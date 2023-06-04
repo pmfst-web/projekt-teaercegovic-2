@@ -3,7 +3,6 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const pocetnoStanje = {
   nakit: NAKITI,
-  filterNakiti: NAKITI,
   favoritNakiti: [],
   kosarica: [],
 };
@@ -13,19 +12,14 @@ const nakitSlice = createSlice({
   initialState:pocetnoStanje,
 
   reducers:{
-    deleteNakit: (state,action)=>{
-      const deleteNakit = state.nakit.filter(
-        (n)=>n.id !== action.payload
-      )
-      return{...state, nakit:deleteNakit}
+
+    dodajNakit:(state,action)=>{
+      state.kosarica = [...state.kosarica, action.payload]
     },
-    
-    filterNakiti:(state,action)=>{
-      console.log('aa')
-      const filterNakiti=state.nakit.filter(
-        (n)=>n.vrsta.toUpperCase() === action.payload.toUpperCase()
-      )
-      return{...state,filterNakiti}
+
+    ukloniNakit:(state,action)=>{
+      const ukloniNakit = state.kosarica.filter((nakit)=>nakit.id!==action.payload.id)
+      state.kosarica=ukloniNakit
     },
 
     favoritNakit:(state,action)=>{
@@ -47,10 +41,11 @@ const nakitSlice = createSlice({
         return {...state,favoritNakiti:state.favoritNakiti.concat(n)}
       }
     }
+
   }
 })
 
-export const {filterNakiti,favoritNakit} = nakitSlice.actions;
+export const {filterNakiti,favoritNakit,dodajNakit,ukloniNakit} = nakitSlice.actions;
 
 export default nakitSlice.reducer;
 
