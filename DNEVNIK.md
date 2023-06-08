@@ -34,3 +34,7 @@ Promjena favorita
 ## 04.06.2023.
 ### Kratki opis promjena
 Dodavanje i uklanjanje u košaricu
+
+## 07.06.2023.
+### Kratki opis promjena
+Izgled ekrana košarice
