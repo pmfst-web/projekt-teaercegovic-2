@@ -38,3 +38,7 @@ Dodavanje i uklanjanje u košaricu
 ## 07.06.2023.
 ### Kratki opis promjena
 Izgled ekrana košarice
+
+## 18.06.2023.
+### Kratki opis promjena
+Zadnji ekran za kraj narudžbe.

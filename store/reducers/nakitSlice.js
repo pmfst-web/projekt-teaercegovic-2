@@ -22,6 +22,10 @@ const nakitSlice = createSlice({
       state.kosarica=ukloniNakit
     },
 
+    resetKosara:(state,action)=>{
+      state.kosarica=pocetnoStanje.kosarica
+    },
+
     favoritNakit:(state,action)=>{
       console.log(action.payload,'jaa')
       console.log('h,',state.favoritNakiti)
@@ -45,7 +49,7 @@ const nakitSlice = createSlice({
   }
 })
 
-export const {filterNakiti,favoritNakit,dodajNakit,ukloniNakit} = nakitSlice.actions;
+export const {filterNakiti,favoritNakit,dodajNakit,ukloniNakit,resetKosara} = nakitSlice.actions;
 
 export default nakitSlice.reducer;
 

@@ -9,6 +9,7 @@ import PocetniEkran from './screens/PocetniEkran';
 import ProizvodiEkran from './screens/ProizvodiEkran';
 import KosaraEkran from './screens/KosaraEkran';
 import DetaljiEkran from './screens/DetaljiEkran';
+import KrajEkran from './screens/KrajEkran';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
 
+      
+
         <Stack.Screen options={{headerShown: false}} name="Naslovna" component={PocetniEkran}/>
 
 
@@ -106,6 +109,11 @@ export default function App() {
         options={({ route, navigation }) => {
               return {
                 headerRight: () => {}}}}
+        />
+
+        <Stack.Screen
+        name="Order message"
+        component={KrajEkran}
         />
 
     
